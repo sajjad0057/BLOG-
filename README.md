@@ -1,7 +1,7 @@
 # BLOG-
 Developing BlogSite BackEnd With Django
 #Requirements:
-django
-pillow
-django-crispy-forms
-django-cleanup
+django,
+pillow,
+django-crispy-forms,
+django-cleanup,

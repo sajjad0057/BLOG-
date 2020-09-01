@@ -8,7 +8,7 @@ from django.utils.text import slugify
 class Blog(models.Model):
     author = models.ForeignKey(User, on_delete = models.CASCADE, related_name='post_author')
     blog_title = models.CharField(max_length=264, verbose_name='Put a Title')
-    slug = models.SlugField(max_length=264, unique=True)
+    slug = models.SlugField(max_length=264, unique=True,allow_unicode=True)
     blog_content = models.TextField(verbose_name='What Is Your Mind ...?')
     blog_image = models.ImageField(upload_to = 'blog_images', verbose_name='Set Image')
     published_date = models.DateTimeField(auto_now_add=True)
@@ -22,7 +22,7 @@ class Blog(models.Model):
         return f'{self.blog_title}'
 
     def _generate_unique_slug(self):
-        unique_slug = slugify(self.blog_title)
+        unique_slug = slugify(self.blog_title,allow_unicode=True)
         num = 10101
         while Blog.objects.filter(slug=unique_slug).exists():
             unique_slug = '{}-{}'.format(unique_slug, num)
